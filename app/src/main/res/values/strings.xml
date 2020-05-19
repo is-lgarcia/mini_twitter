@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Mini Twitter</string>
+
+    <!-- String Login and SingUp -->
+
+    <string name="enter_email">Correo Eléctronico</string>
+    <string name="enter_password">Contraseña</string>
+    <string name="btn_login">Iniciar Sesión</string>
+    <string name="create_account">Regístrate Aquí</string>
+
+
 </resources>
