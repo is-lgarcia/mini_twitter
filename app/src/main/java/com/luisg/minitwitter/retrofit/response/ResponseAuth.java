@@ -1,5 +1,5 @@
 
-package com.luisg.minitwitter;
+package com.luisg.minitwitter.retrofit.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
