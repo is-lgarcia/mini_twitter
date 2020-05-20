@@ -5,8 +5,11 @@
 
     <string name="enter_email">Correo Eléctronico</string>
     <string name="enter_password">Contraseña</string>
+    <string name="enter_username">Nombre de Usuario</string>
     <string name="btn_login">Iniciar Sesión</string>
+    <string name="btn_signup">Registrarme</string>
     <string name="create_account">Regístrate Aquí</string>
+    <string name="btn_back_login">Ya tienes cuenta, Inicia Sesión</string>
 
 
 </resources>
