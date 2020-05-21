@@ -12,6 +12,7 @@
     <string name="btn_back_login">Ya tienes cuenta, Inicia Sesión</string>
     <string name="error_empty">Campo Obligatorio</string>
     <string name="error_login">Error usuario o contraseña incorrecto</string>
+    <string name="error_signup">Error usuario ya existe</string>
 
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_home">Home</string>

@@ -9,6 +9,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.luisg.minitwitter.R;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView imvLogo;
     TextInputLayout inputEmail, inputPassword;
     Button btnLogin, btnCreateAccount;
+    ProgressBar progressBar;
     private MIniTwitterClient mIniTwitterClient;
     private MiniTwitterService miniTwitterService;
 
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         inputEmail = findViewById(R.id.input_email_login);
         inputPassword = findViewById(R.id.input_password_login);
         btnLogin = findViewById(R.id.btn_login);
+        progressBar = findViewById(R.id.progress_bar_login);
         btnCreateAccount = findViewById(R.id.btn_create_account);
     }
 
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
                     if (response.isSuccessful()){
+                        progressBar.setVisibility(View.VISIBLE);
                         Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                         startActivity(intent);
                         finish();
