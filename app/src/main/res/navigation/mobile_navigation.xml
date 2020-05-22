@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.luisg.minitwitter.view.ui.home.HomeFragment"
+        android:name="com.luisg.minitwitter.view.ui.home.TwettFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_twett" />
 
     <fragment
         android:id="@+id/navigation_tweet_like"
