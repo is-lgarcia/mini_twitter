@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.luisg.minitwitter.R;
+import com.luisg.minitwitter.common.Constants;
+import com.luisg.minitwitter.common.SharedPreferencesManager;
 import com.luisg.minitwitter.retrofit.MIniTwitterClient;
 import com.luisg.minitwitter.retrofit.MiniTwitterService;
 import com.luisg.minitwitter.retrofit.request.RequestLogin;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
                     if (response.isSuccessful()){
                         progressBar.setVisibility(View.VISIBLE);
+                        saveDataSharePreferences(response);
                         Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                         startActivity(intent);
                         finish();
@@ -89,6 +92,15 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+    }
+
+    private void saveDataSharePreferences(Response<ResponseAuth> response) {
+        SharedPreferencesManager.setSomeStringValue(Constants.PREF_TOKEN, response.body().getToken());
+        SharedPreferencesManager.setSomeStringValue(Constants.PREF_USERNAME, response.body().getUsername());
+        SharedPreferencesManager.setSomeStringValue(Constants.PREF_EMAIL, response.body().getEmail());
+        SharedPreferencesManager.setSomeStringValue(Constants.PREF_PHOTOURL, response.body().getPhotoUrl());
+        SharedPreferencesManager.setSomeStringValue(Constants.PREF_CREATED, response.body().getCreated());
+        SharedPreferencesManager.setSomeBooleanValue(Constants.PREF_ACTIVE, response.body().getActive());
     }
 
     private boolean validationLogin(String email, String password) {

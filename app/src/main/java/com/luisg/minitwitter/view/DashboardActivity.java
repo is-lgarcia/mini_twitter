@@ -1,8 +1,12 @@
 package com.luisg.minitwitter.view;
 
 import android.os.Bundle;
+import android.widget.Toast;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.luisg.minitwitter.R;
+import com.luisg.minitwitter.common.Constants;
+import com.luisg.minitwitter.common.SharedPreferencesManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -25,6 +29,7 @@ public class DashboardActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
     }
 
 }
