@@ -23,9 +23,9 @@ import java.util.List;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> {
 
-    List<Tweet> mValue;
-    Context context;
-    String username;
+    private List<Tweet> mValue;
+    private Context context;
+    private String username;
 
 
     public TweetAdapter(List<Tweet> mValue, Context context) {
@@ -39,7 +39,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.fragment_twett, parent, false);
+                .inflate(R.layout.tweet_item, parent, false);
 
         return new ViewHolder(view);
     }
@@ -50,13 +50,13 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
         holder.textUserName.setText(holder.mItem.getUser().getUsername());
         holder.textMessage.setText(holder.mItem.getMensaje());
-        holder.textCountLikes.setText(holder.mItem.getLikes().size());
+        holder.textCountLikes.setText(String.valueOf(holder.mItem.getLikes().size()));
 
         String photo = holder.mItem.getUser().getPhotoUrl();
         if (!photo.equals("")) {
             Glide
                     .with(context)
-                    .load((Constants.API_MINITWITTER_BASE_URL + photo))
+                    .load((Constants.API_MINITWITTER_PHOTO_URL + photo))
                     .apply(RequestOptions.circleCropTransform())
                     .into(holder.imageAvatar);
         }
@@ -71,7 +71,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                 break;
             }
         }
-
     }
 
     @Override

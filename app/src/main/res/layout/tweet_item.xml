@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageview_avatar"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:padding="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,28 +21,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="TextView"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageview_avatar"
-        app:layout_constraintTop_toTopOf="@+id/imageview_avatar" />
+        app:layout_constraintTop_toTopOf="@+id/imageview_avatar"
+        tools:text="Luis Garcia" />
 
     <TextView
         android:id="@+id/text_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/text_username"
-        app:layout_constraintTop_toBottomOf="@+id/text_username" />
+        app:layout_constraintTop_toBottomOf="@+id/text_username"
+        tools:text="Hola Bienvenido a esta nueva red social donde desarrollamos esta aplicación para consumir una API REST y poder aprender y fortaleces nuestros Skills de Desarrollo de Aplicaciones" />
 
     <ImageView
         android:id="@+id/image_like"
         android:layout_width="18dp"
         android:layout_height="19dp"
+        android:layout_marginTop="16dp"
         android:tint="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/text_message"
+        app:layout_constraintTop_toBottomOf="@+id/text_message"
         app:srcCompat="@drawable/ic_like" />
 
     <TextView
@@ -49,8 +51,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="0 likes"
         app:layout_constraintBottom_toBottomOf="@+id/image_like"
         app:layout_constraintStart_toEndOf="@+id/image_like"
-        app:layout_constraintTop_toTopOf="@+id/image_like" />
+        app:layout_constraintTop_toTopOf="@+id/image_like"
+        tools:text="10" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0.1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_like" />
 </androidx.constraintlayout.widget.ConstraintLayout>

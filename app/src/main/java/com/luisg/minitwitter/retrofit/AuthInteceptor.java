@@ -13,7 +13,7 @@ public class AuthInteceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         String token = SharedPreferencesManager.getSomeStringValue(Constants.PREF_TOKEN);
-        Request request = chain.request().newBuilder().addHeader("Authorization", "Bear "+ token).build();
+        Request request = chain.request().newBuilder().addHeader("Authorization", "Bearer "+ token).build();
         return chain.proceed(request);
     }
 }
