@@ -46,35 +46,42 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mItem = mValue.get(position);
 
-        holder.textUserName.setText(holder.mItem.getUser().getUsername());
-        holder.textMessage.setText(holder.mItem.getMensaje());
-        holder.textCountLikes.setText(String.valueOf(holder.mItem.getLikes().size()));
+        if (mValue != null) {
 
-        String photo = holder.mItem.getUser().getPhotoUrl();
-        if (!photo.equals("")) {
-            Glide
-                    .with(context)
-                    .load((Constants.API_MINITWITTER_PHOTO_URL + photo))
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(holder.imageAvatar);
-        }
+            holder.mItem = mValue.get(position);
 
-        for (Like like : holder.mItem.getLikes()) {
-            if (like.getUsername().equals(username)) {
-                Glide.with(context)
-                        .load(R.drawable.ic_like_pink)
-                        .into(holder.imageLike);
-                holder.textCountLikes.setTextColor(context.getResources().getColor(R.color.colorPinkIconLike));
-                holder.textCountLikes.setTypeface(null, Typeface.BOLD);
-                break;
+            holder.textUserName.setText(holder.mItem.getUser().getUsername());
+            holder.textMessage.setText(holder.mItem.getMensaje());
+            holder.textCountLikes.setText(String.valueOf(holder.mItem.getLikes().size()));
+
+            String photo = holder.mItem.getUser().getPhotoUrl();
+            if (!photo.equals("")) {
+                Glide
+                        .with(context)
+                        .load((Constants.API_MINITWITTER_PHOTO_URL + photo))
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(holder.imageAvatar);
+            }
+
+            for (Like like : holder.mItem.getLikes()) {
+                if (like.getUsername().equals(username)) {
+                    Glide.with(context)
+                            .load(R.drawable.ic_like_pink)
+                            .into(holder.imageLike);
+                    holder.textCountLikes.setTextColor(context.getResources().getColor(R.color.colorPinkIconLike));
+                    holder.textCountLikes.setTypeface(null, Typeface.BOLD);
+                    break;
+                }
             }
         }
     }
 
     @Override
     public int getItemCount() {
+        if (mValue == null){
+            return 0;
+        }
         return mValue.size();
     }
 
@@ -105,5 +112,9 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         }
     }
 
+    public void setData(List<Tweet> tweetList){
+        this.mValue = tweetList;
+        notifyDataSetChanged();
+    }
 
 }
