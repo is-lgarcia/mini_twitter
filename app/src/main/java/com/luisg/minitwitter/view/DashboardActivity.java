@@ -2,11 +2,17 @@ package com.luisg.minitwitter.view;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.luisg.minitwitter.R;
+import com.luisg.minitwitter.common.Constants;
+import com.luisg.minitwitter.common.SharedPreferencesManager;
+import com.luisg.minitwitter.view.ui.NewTweetDialogFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +22,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class DashboardActivity extends AppCompatActivity {
+
+    NavController navController;
+    private ImageView imageAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +38,8 @@ public class DashboardActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                NewTweetDialogFragment dialogFragment = new NewTweetDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(), "NewTweetDialogFragment");
             }
         });
 
@@ -40,9 +49,20 @@ public class DashboardActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_tweet_like, R.id.navigation_profile)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        //SetImage
+
+        imageAvatar = findViewById(R.id.image_view_toolbar_photo);
+        String imageUrl = SharedPreferencesManager.getSomeStringValue(Constants.PREF_PHOTOURL);
+        if (!imageUrl.equals("")) {
+            Glide.with(this)
+                    .load(Constants.API_MINITWITTER_PHOTO_URL + imageUrl)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(imageAvatar);
+        }
 
     }
 

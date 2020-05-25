@@ -28,6 +28,12 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_appbar_home">Inicio</string>
+    <string name="button_new_tweet">Twittear</string>
+    <string name="hint_new_tweet">¿Qué está pasando?</string>
+    <string name="alert_message_new_dialog">¿Desea realmente eliminar el Tweet?. \nEl mensaje se borrará</string>
+    <string name="title_alert_message_dialog">Cancelar Tweet</string>
+    <string name="btn_possitive_confir_alert_dialog">Eliminar</string>
+    <string name="btn_negative_confir_alert_dialog">Cancelar</string>
 
 
 </resources>

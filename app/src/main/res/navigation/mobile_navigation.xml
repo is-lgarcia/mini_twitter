@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="com.luisg.minitwitter.view.ui.tweet.TwettFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_twett" />
+        tools:layout="@layout/fragment_twett"></fragment>
 
     <fragment
         android:id="@+id/navigation_tweet_like"
@@ -22,4 +22,12 @@
         android:name="com.luisg.minitwitter.view.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <dialog
+        android:id="@+id/newTweetDialogFragment"
+        android:name="com.luisg.minitwitter.view.ui.NewTweetDialogFragment"
+        android:label="NewTweetDialogFragment" />
+    <activity
+        android:id="@+id/dashboardActivity"
+        android:name="com.luisg.minitwitter.view.DashboardActivity"
+        android:label="DashboardActivity" />
 </navigation>
