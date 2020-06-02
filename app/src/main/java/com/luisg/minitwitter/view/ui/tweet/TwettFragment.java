@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,8 +45,7 @@ public class TwettFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        twettViewModel =
-                ViewModelProviders.of(this).get(TwettViewModel.class);
+        twettViewModel = new ViewModelProvider(requireActivity()).get(TwettViewModel.class);
         View root = inflater.inflate(R.layout.fragment_twett, container, false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         progressBar = root.findViewById(R.id.progress_bar_twett);
@@ -67,7 +67,7 @@ public class TwettFragment extends Fragment {
 
 
     private void loadTwettData() {
-        twettViewModel.getTweets().observe(getActivity(), new Observer<List<Tweet>>() {
+        twettViewModel.getTweets().observe(getViewLifecycleOwner(), new Observer<List<Tweet>>() {
             @Override
             public void onChanged(List<Tweet> tweets) {
                 tweetList = tweets;

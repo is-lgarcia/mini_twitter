@@ -16,6 +16,8 @@ import com.luisg.minitwitter.view.ui.tweet.TweetAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Handler;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,7 +27,7 @@ public class TweetRepository {
     AuthTwitterClient authTwitterClient;
     MutableLiveData<List<Tweet>> allTweets;
 
-    public TweetRepository() {
+    TweetRepository() {
         authTwitterClient = AuthTwitterClient.getInstance();
         authTwitterService = authTwitterClient.getAuthTwitterService();
         allTweets = getAllTweets();
@@ -64,15 +66,15 @@ public class TweetRepository {
         Call<Tweet> call = authTwitterService.createTweet(requestNewTweet);
         call.enqueue(new Callback<Tweet>() {
             @Override
-            public void onResponse(Call<Tweet> call, Response<Tweet> response) {
+            public void onResponse(Call<Tweet> call, final Response<Tweet> response) {
                 if (response.isSuccessful()) {
-                    List<Tweet> clonList = new ArrayList<>();
-                    //Añadiendo el primer lugar el nuevo tweet que nos llega del server
-                    clonList.add(response.body());
+
+                    final List<Tweet> clonList = new ArrayList<>();
                     for (int i = 0; i < allTweets.getValue().size(); i++) {
                         clonList.add(new Tweet(allTweets.getValue().get(i)));
                     }
                     allTweets.setValue(clonList);
+
                 } else {
                     Toast.makeText(MyApp.getContext(), "Algo a ido mal, intentelo de nuevo", Toast.LENGTH_SHORT).show();
                 }

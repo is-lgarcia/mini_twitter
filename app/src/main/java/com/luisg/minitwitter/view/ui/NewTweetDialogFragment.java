@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
@@ -59,10 +60,9 @@ public class NewTweetDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 String mensaje = editMessage.getText().toString();
                 if (mensaje.isEmpty() && mensaje.equals("")) {
-                    showDialogConfirm();
-                } else {
                     getDialog().dismiss();
-
+                } else {
+                    showDialogConfirm();
                 }
             }
         });
@@ -76,7 +76,7 @@ public class NewTweetDialogFragment extends DialogFragment {
                 if (mensaje.isEmpty() && mensaje.equals("")) {
                     btnTwittear.setEnabled(false);
                 } else {
-                    TwettViewModel twettViewModel = ViewModelProviders.of(getActivity()).get(TwettViewModel.class);
+                    TwettViewModel twettViewModel = new ViewModelProvider(requireActivity()).get(TwettViewModel.class);
                     twettViewModel.insertTweet(mensaje);
                     getDialog().dismiss();
                 }
@@ -88,6 +88,7 @@ public class NewTweetDialogFragment extends DialogFragment {
                 btnTwittear.setEnabled(true);
             }
         });
+        btnTwittear.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         //Set Profile Image
 

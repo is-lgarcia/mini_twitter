@@ -51,7 +51,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
             holder.mItem = mValue.get(position);
 
-            holder.textUserName.setText(holder.mItem.getUser().getUsername());
+            holder.textUserName.setText(String.format("@%s", holder.mItem.getUser().getUsername()));
             holder.textMessage.setText(holder.mItem.getMensaje());
             holder.textCountLikes.setText(String.valueOf(holder.mItem.getLikes().size()));
 
@@ -75,6 +75,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                 }
             }
         }
+    }
+
+
+    public void setData(List<Tweet> tweetList) {
+        this.mValue = tweetList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -112,9 +118,5 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         }
     }
 
-    public void setData(List<Tweet> tweetList){
-        this.mValue = tweetList;
-        notifyDataSetChanged();
-    }
 
 }

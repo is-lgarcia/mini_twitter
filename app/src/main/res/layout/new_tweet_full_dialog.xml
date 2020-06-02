@@ -23,7 +23,7 @@
         android:layout_marginEnd="24dp"
         android:text="@string/button_new_tweet"
         android:textAllCaps="false"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/colorAccent"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         style="@style/Widget.App.Button.OutlinedButton"
