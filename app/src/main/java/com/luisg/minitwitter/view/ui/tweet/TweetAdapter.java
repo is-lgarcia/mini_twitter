@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.luisg.minitwitter.R;
 import com.luisg.minitwitter.common.Constants;
 import com.luisg.minitwitter.common.SharedPreferencesManager;
+import com.luisg.minitwitter.data.TwettViewModel;
 import com.luisg.minitwitter.retrofit.response.Like;
 import com.luisg.minitwitter.retrofit.response.Tweet;
 
@@ -26,12 +29,14 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     private List<Tweet> mValue;
     private Context context;
     private String username;
+    TwettViewModel twettViewModel;
 
 
     public TweetAdapter(List<Tweet> mValue, Context context) {
         this.mValue = mValue;
         this.context = context;
         username = SharedPreferencesManager.getSomeStringValue(Constants.PREF_USERNAME);
+        twettViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(TwettViewModel.class);
     }
 
     @NonNull
@@ -45,7 +50,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         if (mValue != null) {
 
@@ -63,6 +68,13 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                         .apply(RequestOptions.circleCropTransform())
                         .into(holder.imageAvatar);
             }
+
+            holder.imageLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    twettViewModel.likeTweet(holder.mItem.getId());
+                }
+            });
 
             for (Like like : holder.mItem.getLikes()) {
                 if (like.getUsername().equals(username)) {

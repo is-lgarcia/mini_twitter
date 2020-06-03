@@ -34,4 +34,8 @@ public class TwettViewModel extends AndroidViewModel {
     public void insertTweet(String message) {
         repository.createTweet(message);
     }
+
+    public void likeTweet(int idTweet){
+        repository.likeTweet(idTweet);
+    }
 }
