@@ -16,6 +16,7 @@ public class TwettViewModel extends AndroidViewModel {
 
     private TweetRepository repository;
     private LiveData<List<Tweet>> allTweets;
+    private LiveData<List<Tweet>> favTweets;
 
 
     public TwettViewModel(@NonNull Application application) {
@@ -25,6 +26,16 @@ public class TwettViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Tweet>> getTweets(){ return allTweets;}
+
+    public LiveData<List<Tweet>> getFavTweets(){
+        allTweets = repository.getFavTweets();
+        return allTweets;
+    }
+
+    public LiveData<List<Tweet>> getNewFavTweets(){
+        getNewTweets();
+        return getFavTweets();
+    }
 
     public LiveData<List<Tweet>> getNewTweets(){
         allTweets = repository.getAllTweets();
@@ -38,4 +49,6 @@ public class TwettViewModel extends AndroidViewModel {
     public void likeTweet(int idTweet){
         repository.likeTweet(idTweet);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.luisg.minitwitter.view.ui.dashboard;
+package com.luisg.minitwitter.view.ui.favTweet;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

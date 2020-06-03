@@ -1,11 +1,11 @@
-package com.luisg.minitwitter.view.ui.tweet;
+package com.luisg.minitwitter.view.ui.favTweet;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -19,74 +19,72 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.luisg.minitwitter.R;
 import com.luisg.minitwitter.data.TwettViewModel;
 import com.luisg.minitwitter.retrofit.response.Tweet;
+import com.luisg.minitwitter.view.ui.tweet.TweetAdapter;
 
 import java.util.List;
 
-public class TwettFragment extends Fragment {
+public class FavTweetFragment extends Fragment {
 
     private TwettViewModel twettViewModel;
-    ProgressBar progressBar;
-    RecyclerView recyclerView;
-    TweetAdapter adapter;
-    List<Tweet> tweetList;
-    SwipeRefreshLayout refreshLayout;
+    private ProgressBar progressBar;
+    private RecyclerView recyclerView;
+    private FavTweetAdapter adapter;
+    private List<Tweet> tweetList;
+    private SwipeRefreshLayout refreshLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         twettViewModel = new ViewModelProvider(requireActivity()).get(TwettViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_twett, container, false);
+        View root = inflater.inflate(R.layout.fragment_fav_tweet, container, false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
-        refreshLayout = root.findViewById(R.id.swipe_refres_layout);
+        refreshLayout = root.findViewById(R.id.swipe_refres_layout_fav);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshLayout.setRefreshing(true);
-                loadNewData();
+                loadNewFav();
             }
         });
 
-
-        progressBar = root.findViewById(R.id.progress_bar_twett);
+        progressBar = root.findViewById(R.id.progress_bar_fav_twett);
         progressBar.setVisibility(View.VISIBLE);
-        recyclerView = root.findViewById(R.id.recycler_view_twett);
+        recyclerView = root.findViewById(R.id.recycler_view_fav_twett);
         recyclerView.setLayoutManager(layoutManager);
 
-
         //Set Adapter
-        adapter = new TweetAdapter(tweetList,
+        adapter = new FavTweetAdapter(tweetList,
                 getActivity()
         );
         recyclerView.setAdapter(adapter);
-        loadTwettData();
+        loadFavTweet();
         progressBar.setVisibility(View.GONE);
-        
+
         return root;
     }
 
-
-    private void loadTwettData() {
-        twettViewModel.getTweets().observe(getViewLifecycleOwner(), new Observer<List<Tweet>>() {
-            @Override
-            public void onChanged(List<Tweet> tweets) {
-                tweetList = tweets;
-                adapter.setData(tweetList);
-            }
-        });
-
-    }
-
-    private void loadNewData() {
-        twettViewModel.getNewTweets().observe(getViewLifecycleOwner(), new Observer<List<Tweet>>() {
+    private void loadNewFav(){
+        twettViewModel.getNewFavTweets().observe(getViewLifecycleOwner(), new Observer<List<Tweet>>() {
             @Override
             public void onChanged(List<Tweet> tweets) {
                 tweetList = tweets;
                 refreshLayout.setRefreshing(false);
                 adapter.setData(tweetList);
-                twettViewModel.getNewTweets().removeObservers(getViewLifecycleOwner());
+                twettViewModel.getNewFavTweets().removeObserver(this);
             }
         });
-
     }
+
+    private void loadFavTweet(){
+        twettViewModel.getFavTweets().observe(getViewLifecycleOwner(), new Observer<List<Tweet>>() {
+            @Override
+            public void onChanged(List<Tweet> tweets) {
+                tweetList = tweets;
+                adapter.setData(tweetList);
+            }
+        });
+    }
+
+
 }

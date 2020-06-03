@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_tweet_like"
-        android:name="com.luisg.minitwitter.view.ui.dashboard.DashboardFragment"
+        android:name="com.luisg.minitwitter.view.ui.favTweet.FavTweetFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_fav_tweet" />
 
     <fragment
         android:id="@+id/navigation_profile"

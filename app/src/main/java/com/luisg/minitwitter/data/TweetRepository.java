@@ -6,14 +6,18 @@ import android.widget.Toast;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.luisg.minitwitter.common.Constants;
 import com.luisg.minitwitter.common.MyApp;
+import com.luisg.minitwitter.common.SharedPreferencesManager;
 import com.luisg.minitwitter.retrofit.AuthTwitterClient;
 import com.luisg.minitwitter.retrofit.AuthTwitterService;
 import com.luisg.minitwitter.retrofit.request.RequestNewTweet;
+import com.luisg.minitwitter.retrofit.response.Like;
 import com.luisg.minitwitter.retrofit.response.Tweet;
 import com.luisg.minitwitter.view.ui.tweet.TweetAdapter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import android.os.Handler;
@@ -26,11 +30,14 @@ public class TweetRepository {
     AuthTwitterService authTwitterService;
     AuthTwitterClient authTwitterClient;
     MutableLiveData<List<Tweet>> allTweets;
+    MutableLiveData<List<Tweet>> favTweets;
+    String userName;
 
     TweetRepository() {
         authTwitterClient = AuthTwitterClient.getInstance();
         authTwitterService = authTwitterClient.getAuthTwitterService();
         allTweets = getAllTweets();
+        userName = SharedPreferencesManager.getSomeStringValue(Constants.PREF_USERNAME);
     }
 
     public MutableLiveData<List<Tweet>> getAllTweets() {
@@ -108,6 +115,7 @@ public class TweetRepository {
                         }
                     }
                     allTweets.setValue(clonList);
+                    getFavTweets();
 
                 } else {
                     Toast.makeText(MyApp.getContext(), "Algo a ido mal, intentelo de nuevo", Toast.LENGTH_SHORT).show();
@@ -120,4 +128,32 @@ public class TweetRepository {
             }
         });
     }
+
+    public MutableLiveData<List<Tweet>> getFavTweets() {
+        if (favTweets == null){
+            favTweets = new MutableLiveData<>();
+        }
+
+        List<Tweet> newFavList = new ArrayList<>();
+        Iterator itTweet = allTweets.getValue().iterator();
+
+        while (itTweet.hasNext()){
+            Tweet current = (Tweet) itTweet.next();
+            Iterator itLikes = current.getLikes().iterator();
+            boolean found = false;
+            while (itLikes.hasNext() && !found){
+                Like like = (Like) itLikes.next();
+                if (like.getUsername().equals(userName)){
+                    found = true;
+                    newFavList.add(current);
+                }
+            }
+        }
+
+        favTweets.setValue(newFavList);
+
+        return favTweets;
+    }
+
+
 }
