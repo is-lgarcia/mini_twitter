@@ -1,14 +1,17 @@
 package com.luisg.minitwitter.data;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.luisg.minitwitter.retrofit.response.Tweet;
+import com.luisg.minitwitter.view.ui.BottomModalTweetFragment;
 
 import java.util.List;
 
@@ -48,6 +51,13 @@ public class TwettViewModel extends AndroidViewModel {
 
     public void likeTweet(int idTweet){
         repository.likeTweet(idTweet);
+    }
+
+    public void deleteTweet(int idTweet) { repository.deleteTweet(idTweet);}
+
+    public void showDialogTweetMenu(Context context, int idTweet){
+        BottomModalTweetFragment dialogTweet = BottomModalTweetFragment.newInstance(idTweet);
+        dialogTweet.show(((AppCompatActivity)context).getSupportFragmentManager(),"BottomModalTweetFragment");
     }
 
 

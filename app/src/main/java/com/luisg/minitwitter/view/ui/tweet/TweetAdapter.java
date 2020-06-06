@@ -69,6 +69,18 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                         .into(holder.imageAvatar);
             }
 
+            holder.showMenu.setVisibility(View.GONE);
+            if (holder.mItem.getUser().getUsername().equals(username)){
+                holder.showMenu.setVisibility(View.VISIBLE);
+            }
+
+            holder.showMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    twettViewModel.showDialogTweetMenu(context, holder.mItem.getId());
+                }
+            });
+
             holder.imageLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -97,7 +109,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        if (mValue == null){
+        if (mValue == null) {
             return 0;
         }
         return mValue.size();
@@ -108,6 +120,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         public final View mView;
         public final ImageView imageAvatar;
         public final ImageView imageLike;
+        public final ImageView showMenu;
         public final TextView textUserName;
         public final TextView textMessage;
         public final TextView textCountLikes;
@@ -118,6 +131,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             mView = itemView;
             imageAvatar = itemView.findViewById(R.id.imageview_avatar);
             imageLike = itemView.findViewById(R.id.image_like);
+            showMenu = itemView.findViewById(R.id.iv_tweet_menu);
             textUserName = itemView.findViewById(R.id.text_username);
             textMessage = itemView.findViewById(R.id.text_message);
             textCountLikes = itemView.findViewById(R.id.text_likes);

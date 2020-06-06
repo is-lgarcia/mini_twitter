@@ -25,12 +25,14 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageview_avatar"
         app:layout_constraintTop_toTopOf="@+id/imageview_avatar"
-        tools:text="Luis Garcia" />
+        tools:text="\@lgarcia" />
 
     <TextView
         android:id="@+id/text_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/text_username"
         app:layout_constraintTop_toBottomOf="@+id/text_username"
@@ -65,4 +67,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_like" />
+
+    <ImageView
+        android:id="@+id/iv_tweet_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:tint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_username"
+        app:srcCompat="@drawable/ic_arrow_down" />
 </androidx.constraintlayout.widget.ConstraintLayout>

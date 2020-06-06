@@ -13,4 +13,5 @@ public class Constants {
     public static final String PREF_PHOTOURL = "PREF_PHOTOURL";
     public static final String PREF_CREATED = "PREF_CREATED";
     public static final String PREF_ACTIVE = "PREF_ACTIVE";
+    public static final String ARG_TWEET_ID = "TWEET_ID";
 }
