@@ -5,7 +5,7 @@
     android:id="@+id/swipe_refres_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.tweet.TwettFragment">
+    tools:context=".view.ui.fragment.tweet.TwettFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -1,9 +1,7 @@
 package com.luisg.minitwitter.data;
 
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.luisg.minitwitter.common.Constants;
@@ -15,13 +13,10 @@ import com.luisg.minitwitter.retrofit.request.RequestNewTweet;
 import com.luisg.minitwitter.retrofit.response.Like;
 import com.luisg.minitwitter.retrofit.response.Tweet;
 import com.luisg.minitwitter.retrofit.response.TweetDeleted;
-import com.luisg.minitwitter.view.ui.tweet.TweetAdapter;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import android.os.Handler;
 
 import retrofit2.Call;
 import retrofit2.Callback;

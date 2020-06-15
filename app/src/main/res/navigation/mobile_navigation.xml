@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.luisg.minitwitter.view.ui.tweet.TwettFragment"
+        android:name="com.luisg.minitwitter.view.ui.fragment.tweet.TwettFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_twett"></fragment>
 
     <fragment
         android:id="@+id/navigation_tweet_like"
-        android:name="com.luisg.minitwitter.view.ui.favTweet.FavTweetFragment"
+        android:name="com.luisg.minitwitter.view.ui.fragment.favTweet.FavTweetFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_fav_tweet" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.luisg.minitwitter.view.ui.notifications.NotificationsFragment"
+        android:name="com.luisg.minitwitter.view.ui.fragment.profile.ProfileFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_profile" />
     <dialog
         android:id="@+id/newTweetDialogFragment"
-        android:name="com.luisg.minitwitter.view.ui.NewTweetDialogFragment"
+        android:name="com.luisg.minitwitter.view.ui.fragment.tweet.NewTweetDialogFragment"
         android:label="NewTweetDialogFragment" />
     <activity
         android:id="@+id/dashboardActivity"
-        android:name="com.luisg.minitwitter.view.DashboardActivity"
+        android:name="com.luisg.minitwitter.view.ui.activity.DashboardActivity"
         android:label="DashboardActivity" />
 </navigation>

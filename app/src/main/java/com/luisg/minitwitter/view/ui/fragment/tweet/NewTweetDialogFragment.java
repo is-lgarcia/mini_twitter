@@ -1,26 +1,19 @@
-package com.luisg.minitwitter.view.ui;
+package com.luisg.minitwitter.view.ui.fragment.tweet;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.media.MediaDrm;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -31,9 +24,9 @@ import com.luisg.minitwitter.data.TwettViewModel;
 
 public class NewTweetDialogFragment extends DialogFragment {
 
-    ImageView imageClose, imageAvatar;
-    Button btnTwittear;
-    EditText editMessage;
+    private ImageView imageClose, imageAvatar;
+    private Button btnTwittear;
+    private EditText editMessage;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

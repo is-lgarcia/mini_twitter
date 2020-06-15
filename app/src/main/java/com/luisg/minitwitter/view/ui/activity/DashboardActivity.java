@@ -1,4 +1,4 @@
-package com.luisg.minitwitter.view;
+package com.luisg.minitwitter.view.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,17 +8,15 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.luisg.minitwitter.R;
 import com.luisg.minitwitter.common.Constants;
 import com.luisg.minitwitter.common.SharedPreferencesManager;
-import com.luisg.minitwitter.view.ui.NewTweetDialogFragment;
+import com.luisg.minitwitter.view.ui.fragment.tweet.NewTweetDialogFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.ActivityNavigator;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;

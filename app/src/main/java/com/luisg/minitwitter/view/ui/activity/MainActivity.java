@@ -1,13 +1,15 @@
-package com.luisg.minitwitter.view;
+package com.luisg.minitwitter.view.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.luisg.minitwitter.R;
@@ -15,91 +17,79 @@ import com.luisg.minitwitter.common.Constants;
 import com.luisg.minitwitter.common.SharedPreferencesManager;
 import com.luisg.minitwitter.retrofit.MIniTwitterClient;
 import com.luisg.minitwitter.retrofit.MiniTwitterService;
-import com.luisg.minitwitter.retrofit.request.RequestSignUp;
+import com.luisg.minitwitter.retrofit.request.RequestLogin;
 import com.luisg.minitwitter.retrofit.response.ResponseAuth;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignUpActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    Button btnSignUp, btnBackLogin;
-    TextInputLayout inputUsername, inputEmail, inputPassword;
+    ImageView imvLogo;
+    TextInputLayout inputEmail, inputPassword;
+    Button btnLogin, btnCreateAccount;
     ProgressBar progressBar;
-    MiniTwitterService miniTwitterService;
-    MIniTwitterClient mIniTwitterClient;
+    private MIniTwitterClient mIniTwitterClient;
+    private MiniTwitterService miniTwitterService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_main);
         retrofitInit();
         findView();
-        backLogin();
+
     }
+
 
     private void retrofitInit() {
         mIniTwitterClient = MIniTwitterClient.getInstance();
         miniTwitterService = mIniTwitterClient.getMiniTwitterService();
-
-    }
-
-    private void backLogin() {
-        btnBackLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
     }
 
     private void findView() {
-        btnSignUp = findViewById(R.id.btn_signup);
-        btnBackLogin = findViewById(R.id.btn_back_login);
-        inputUsername = findViewById(R.id.input_user_name_signup);
-        inputEmail = findViewById(R.id.input_email_signup);
-        inputPassword = findViewById(R.id.input_password_signup);
-        progressBar = findViewById(R.id.progressBarSignUp);
+        imvLogo = findViewById(R.id.image_logo);
+        inputEmail = findViewById(R.id.input_email_login);
+        inputPassword = findViewById(R.id.input_password_login);
+        btnLogin = findViewById(R.id.btn_login);
+        progressBar = findViewById(R.id.progress_bar_login);
+        btnCreateAccount = findViewById(R.id.btn_create_account);
     }
 
-    public void onClickSignUp(View view) {
-        progressBar.setVisibility(View.VISIBLE);
-        inputUsername.setErrorEnabled(false);
+    public void onClickLogin(View view) {
+
         inputEmail.setErrorEnabled(false);
         inputPassword.setErrorEnabled(false);
 
-
-        final String username = inputUsername.getEditText().getText().toString();
         String email = inputEmail.getEditText().getText().toString();
         String password = inputPassword.getEditText().getText().toString();
 
-        if (validationSignUP(username, email, password)){
-            RequestSignUp requestSignUp = new RequestSignUp(username, email, password, Constants.CODE_ACCES_API);
-            Call<ResponseAuth> call = miniTwitterService.doSignUp(requestSignUp);
+        if (validationLogin(email, password)){
 
+            RequestLogin requestLogin = new RequestLogin(email,password);
+
+            Call<ResponseAuth> call = miniTwitterService.doLogin(requestLogin);
             call.enqueue(new Callback<ResponseAuth>() {
                 @Override
                 public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
                     if (response.isSuccessful()){
                         progressBar.setVisibility(View.VISIBLE);
                         saveDataSharePreferences(response);
-                        Intent intent = new Intent(SignUpActivity.this, DashboardActivity.class);
+                        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                         startActivity(intent);
                         finish();
+                    }else {
+                        inputPassword.setError(getText(R.string.error_login));
                     }
-
-                    progressBar.setVisibility(View.GONE);
-                    inputUsername.setError(getText(R.string.error_signup));
                 }
-
                 @Override
                 public void onFailure(Call<ResponseAuth> call, Throwable t) {
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(SignUpActivity.this, "Error en la conexión intente de nuevo.", Toast.LENGTH_SHORT).show();
+
                 }
             });
         }
+
     }
 
     private void saveDataSharePreferences(Response<ResponseAuth> response) {
@@ -111,20 +101,29 @@ public class SignUpActivity extends AppCompatActivity {
         SharedPreferencesManager.setSomeBooleanValue(Constants.PREF_ACTIVE, response.body().getActive());
     }
 
-    private boolean validationSignUP(String username, String email, String password){
+    private boolean validationLogin(String email, String password) {
 
-        if (username.isEmpty()){
-            inputUsername.setError(getText(R.string.error_empty));
-        } else if (email.isEmpty()){
+        if (email.isEmpty()){
             inputEmail.setError(getText(R.string.error_empty));
-        }else if (password.isEmpty()){
+        } else if (password.isEmpty()){
             inputPassword.setError(getText(R.string.error_empty));
-        } else {
+        }else {
             return true;
         }
-        progressBar.setVisibility(View.GONE);
         return false;
     }
+
+    public void onClickCreateAccount(View view) {
+        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+
+        Pair[] pairs = new Pair[5];
+        pairs[0] = new Pair<View, String>(imvLogo, "image_logo");
+        pairs[1] = new Pair<View, String>(inputEmail, "input_email");
+        pairs[2] = new Pair<View, String>(inputPassword, "input_password");
+        pairs[3] = new Pair<View, String>(btnLogin, "btn_login");
+        pairs[4] = new Pair<View, String>(btnCreateAccount, "btn_create");
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this,pairs);
+        startActivity(intent,options.toBundle());
+    }
 }
-
-

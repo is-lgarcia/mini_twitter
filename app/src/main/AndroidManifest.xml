@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.DashboardActivity"
+            android:name=".view.ui.activity.DashboardActivity"
             android:label="@string/title_activity_dashboard"></activity>
-        <activity android:name=".view.SignUpActivity" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.ui.activity.SignUpActivity" />
+        <activity android:name=".view.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

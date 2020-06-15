@@ -35,6 +35,8 @@
     <string name="btn_possitive_confir_alert_dialog">Eliminar</string>
     <string name="btn_negative_confir_alert_dialog">Cancelar</string>
     <string name="delete_tweet">Eliminar Tweet</string>
+    <string name="btn_save">Guardar</string>
+    <string name="change_password">¿Desea cambiar contraseña?</string>
 
 
 </resources>

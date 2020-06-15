@@ -7,11 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.luisg.minitwitter.retrofit.response.Tweet;
-import com.luisg.minitwitter.view.ui.BottomModalTweetFragment;
+import com.luisg.minitwitter.view.ui.fragment.tweet.BottomModalTweetFragment;
 
 import java.util.List;
 

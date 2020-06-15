@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#0053ab</color>
     <color name="colorAccent">#63adff</color>
     <color name="colorPinkIconLike">#E0245E</color>
+
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
 
 </resources>
