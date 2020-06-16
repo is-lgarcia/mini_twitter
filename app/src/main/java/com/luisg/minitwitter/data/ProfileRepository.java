@@ -10,6 +10,7 @@ import com.luisg.minitwitter.common.SharedPreferencesManager;
 import com.luisg.minitwitter.retrofit.AuthTwitterClient;
 import com.luisg.minitwitter.retrofit.AuthTwitterService;
 import com.luisg.minitwitter.retrofit.request.RequestNewTweet;
+import com.luisg.minitwitter.retrofit.request.RequestUserProfile;
 import com.luisg.minitwitter.retrofit.response.Like;
 import com.luisg.minitwitter.retrofit.response.ResponseUserProfile;
 import com.luisg.minitwitter.retrofit.response.Tweet;
@@ -34,7 +35,7 @@ public class ProfileRepository {
         userProfile = getProfile();
     }
 
-    //Tweets
+    //Users
 
     public MutableLiveData<ResponseUserProfile> getProfile() {
 
@@ -46,9 +47,9 @@ public class ProfileRepository {
         call.enqueue(new Callback<ResponseUserProfile>() {
             @Override
             public void onResponse(Call<ResponseUserProfile> call, Response<ResponseUserProfile> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     userProfile.setValue(response.body());
-                }else {
+                } else {
                     Toast.makeText(MyApp.getContext(), "Algo a ido mal", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -62,4 +63,25 @@ public class ProfileRepository {
         return userProfile;
     }
 
-}
+    public void updateProfile(RequestUserProfile requestUserProfile) {
+        Call<ResponseUserProfile> call = authTwitterService.updateProfile(requestUserProfile);
+        call.enqueue(new Callback<ResponseUserProfile>() {
+            @Override
+            public void onResponse(Call<ResponseUserProfile> call, Response<ResponseUserProfile> response) {
+                if (response.isSuccessful()) {
+                    userProfile.setValue(response.body());
+                } else {
+                    Toast.makeText(MyApp.getContext(), "Algo a ido mal", Toast.LENGTH_SHORT).show();
+                }
+
+                }
+
+                @Override
+                public void onFailure (Call < ResponseUserProfile > call, Throwable t){
+                    Toast.makeText(MyApp.getContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
+    }
