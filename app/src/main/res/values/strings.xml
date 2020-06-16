@@ -39,6 +39,8 @@
     <string name="change_password">¿Desea cambiar contraseña?</string>
     <string name="enter_website">Website</string>
     <string name="enter_description">Descripción</string>
+    <string name="title_permissions">Permisos</string>
+    <string name="message_permission">Los permisos solicitados son necesarios para poder seleccionar una foto de perfil</string>
 
 
 </resources>

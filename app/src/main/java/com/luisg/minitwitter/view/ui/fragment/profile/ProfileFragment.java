@@ -1,5 +1,6 @@
 package com.luisg.minitwitter.view.ui.fragment.profile;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.listener.single.CompositePermissionListener;
+import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.luisg.minitwitter.R;
 import com.luisg.minitwitter.common.Constants;
-import com.luisg.minitwitter.common.MyApp;
 import com.luisg.minitwitter.data.ProfileViewModel;
-import com.luisg.minitwitter.data.TwettViewModel;
 import com.luisg.minitwitter.retrofit.request.RequestUserProfile;
 import com.luisg.minitwitter.retrofit.response.ResponseUserProfile;
 
@@ -29,9 +33,11 @@ public class ProfileFragment extends Fragment {
 
     private ProfileViewModel profileViewModel;
     private ImageView imageAvatar;
+    private FloatingActionButton fabUploadPhoto;
     private TextInputLayout inputUserName, inputEmail, inputPassword, inputWebsite, inputDescription;
     private Button btnSave, btnChangePassword;
     boolean loadingData = true;
+    PermissionListener allPermisionListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,6 +82,11 @@ public class ProfileFragment extends Fragment {
             //TODO ir a la pantalla de cambiar contraseña
         });
 
+        fabUploadPhoto.setOnClickListener( view -> {
+            //Invocamos al metodo de comprobacion de permisos
+            checkPermission();
+        });
+
         profileViewModel.userProfileLiveData.observe(getViewLifecycleOwner(), new Observer<ResponseUserProfile>() {
             @Override
             public void onChanged(ResponseUserProfile responseUserProfile) {
@@ -90,6 +101,8 @@ public class ProfileFragment extends Fragment {
                     Glide.with(getActivity())
                             .load(Constants.API_MINITWITTER_PHOTO_URL + responseUserProfile.getPhotoUrl())
                             .apply(RequestOptions.circleCropTransform())
+                            .skipMemoryCache(true)
+                            .centerCrop()
                             .into(imageAvatar);
                 }
 
@@ -100,8 +113,41 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        profileViewModel.photoProfile.observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Glide.with(getActivity())
+                        .load(Constants.API_MINITWITTER_PHOTO_URL + s)
+                        .apply(RequestOptions.circleCropTransform())
+                        .skipMemoryCache(true)
+                        .centerCrop()
+                        .into(imageAvatar);
+            }
+        });
+
         return root;
 
+
+
+    }
+
+    private void checkPermission() {
+        PermissionListener dialogOnDeniedPermissionListener =
+                DialogOnDeniedPermissionListener.Builder.withContext(getActivity())
+                .withTitle(R.string.title_permissions)
+                .withMessage(R.string.message_permission)
+                .withButtonText("Aceptar")
+                .withIcon(R.mipmap.ic_launcher)
+                .build();
+
+        allPermisionListener = new CompositePermissionListener(
+                (PermissionListener) getActivity(),dialogOnDeniedPermissionListener
+        );
+
+        Dexter.withContext(getActivity())
+                .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(allPermisionListener)
+                .check();
     }
 
     private void findView(View root) {
@@ -112,6 +158,7 @@ public class ProfileFragment extends Fragment {
         inputDescription = root.findViewById(R.id.input_description_profile);
         imageAvatar = root.findViewById(R.id.image_view_avatar);
         btnSave = root.findViewById(R.id.btn_save_changes);
+        fabUploadPhoto = root.findViewById(R.id.fab_add_photo);
         btnChangePassword = root.findViewById(R.id.btn_change_password);
         inputUserName.setBoxStrokeColor(getResources().getColor(R.color.colorPrimary));
         inputEmail.setBoxStrokeColor(getResources().getColor(R.color.colorPrimary));

@@ -176,6 +176,21 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_photo"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:tint="@android:color/white"
+            android:src="@android:drawable/ic_input_add"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_avatar"
+            app:layout_constraintEnd_toEndOf="@+id/image_view_avatar" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
