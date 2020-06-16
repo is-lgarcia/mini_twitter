@@ -36,6 +36,8 @@ public class TweetRepository {
         userName = SharedPreferencesManager.getSomeStringValue(Constants.PREF_USERNAME);
     }
 
+    //Tweets
+
     public MutableLiveData<List<Tweet>> getAllTweets() {
 
         if (allTweets == null) {
@@ -177,5 +179,6 @@ public class TweetRepository {
             }
         });
     }
+
 
 }

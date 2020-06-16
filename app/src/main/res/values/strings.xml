@@ -37,6 +37,8 @@
     <string name="delete_tweet">Eliminar Tweet</string>
     <string name="btn_save">Guardar</string>
     <string name="change_password">¿Desea cambiar contraseña?</string>
+    <string name="enter_website">Website</string>
+    <string name="enter_description">Descripción</string>
 
 
 </resources>

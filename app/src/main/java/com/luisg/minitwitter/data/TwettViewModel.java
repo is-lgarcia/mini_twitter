@@ -26,19 +26,21 @@ public class TwettViewModel extends AndroidViewModel {
         allTweets = repository.getAllTweets();
     }
 
-    public LiveData<List<Tweet>> getTweets(){ return allTweets;}
+    public LiveData<List<Tweet>> getTweets() {
+        return allTweets;
+    }
 
-    public LiveData<List<Tweet>> getFavTweets(){
+    public LiveData<List<Tweet>> getFavTweets() {
         allTweets = repository.getFavTweets();
         return allTweets;
     }
 
-    public LiveData<List<Tweet>> getNewFavTweets(){
+    public LiveData<List<Tweet>> getNewFavTweets() {
         getNewTweets();
         return getFavTweets();
     }
 
-    public LiveData<List<Tweet>> getNewTweets(){
+    public LiveData<List<Tweet>> getNewTweets() {
         allTweets = repository.getAllTweets();
         return allTweets;
     }
@@ -47,15 +49,18 @@ public class TwettViewModel extends AndroidViewModel {
         repository.createTweet(message);
     }
 
-    public void likeTweet(int idTweet){
+    public void likeTweet(int idTweet) {
         repository.likeTweet(idTweet);
     }
 
-    public void deleteTweet(int idTweet) { repository.deleteTweet(idTweet);}
+    public void deleteTweet(int idTweet) {
+        repository.deleteTweet(idTweet);
+    }
 
-    public void showDialogTweetMenu(Context context, int idTweet){
+    public void showDialogTweetMenu(Context context, int idTweet) {
         BottomModalTweetFragment dialogTweet = BottomModalTweetFragment.newInstance(idTweet);
-        dialogTweet.show(((AppCompatActivity)context).getSupportFragmentManager(),"BottomModalTweetFragment");
+        dialogTweet.show(((AppCompatActivity) context).getSupportFragmentManager(),
+                "BottomModalTweetFragment");
     }
 
 

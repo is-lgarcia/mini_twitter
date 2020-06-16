@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,10 +7,15 @@
     android:padding="16dp"
     tools:context=".view.ui.fragment.profile.ProfileFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <ImageView
         android:id="@+id/image_view_avatar"
         android:layout_width="100dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/ic_account_circle"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +26,7 @@
         android:id="@+id/input_username_profile"
 
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="361dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/enter_username"
@@ -48,7 +53,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_email_profile"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="361dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/enter_email"
@@ -70,9 +75,57 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_website_profile"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/enter_website"
+        app:boxStrokeWidthFocused="2dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/colorPrimary"
+        app:hintTextColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_email_profile"
+        app:startIconDrawable="@drawable/ic_link"
+        app:startIconTint="@color/colorPrimary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textWebEditText"
+            android:textColor="@color/colorPrimary" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_description_profile"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/enter_description"
+        app:boxStrokeWidthFocused="2dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/colorPrimary"
+        app:hintTextColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_website_profile"
+        app:startIconDrawable="@drawable/ic_edit"
+        app:startIconTint="@color/colorPrimary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textWebEditText"
+            android:textColor="@color/colorPrimary" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_password_profile"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="361dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:clickable="false"
@@ -81,8 +134,9 @@
         app:endIconTint="@color/colorPrimary"
         app:hintTextColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_email_profile"
+        app:layout_constraintTop_toBottomOf="@+id/input_description_profile"
         app:passwordToggleEnabled="true"
         app:startIconDrawable="@drawable/ic_lock_outline"
         app:startIconTint="@color/colorPrimary">
@@ -96,7 +150,7 @@
 
     <Button
         android:id="@+id/btn_save_changes"
-        android:layout_width="361dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/btn_save"
@@ -122,5 +176,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
