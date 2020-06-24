@@ -6,13 +6,9 @@
 
 # Capturas de Pantalla
 
-<img src="screenshots/Screenshot_1592931295.png" width="240" height="450">
+<img src="screenshots/Screenshot_1592931295.png" width="240" height="450"> <img src="screenshots/Screenshot_1592931313.png" width="240" height="450"> <img src="screenshots/Screenshot_1592931578.png" width="240" height="450">
 
-![Pantalla de Registro](screenshots/Screenshot_1592931313.png =240x450)
-![Listado de Tweets](screenshots/Screenshot_1592931578.png =240x450)
-
-![Tweets Favoritos](screenshots/Screenshot_1592931593.png =240x450)  
-![Información de Perfil](screenshots/Screenshot_1592931602.png =240x450)   
+<img src="screenshots/Screenshot_1592931593.png" width="240" height="450"> <img src="screenshots/Screenshot_1592931602.png" width="240" height="450">
 
 ## Librerias usadas:
 
