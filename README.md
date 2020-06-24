@@ -6,8 +6,8 @@
 
 # Capturas de Pantalla
 
-![Pantalla de Inicio de Sesión](screenshots/Screenshot_1592931295.png =240x450)
-![Pantalla de Registro](screenshots/Screenshot_1592931313.png =240x450)  
+![Pantalla de Inicio de Sesión](screenshots/Screenshot_1592931295.png)
+![Pantalla de Registro](screenshots/Screenshot_1592931313.png =240x450)
 ![Listado de Tweets](screenshots/Screenshot_1592931578.png =240x450)
 
 ![Tweets Favoritos](screenshots/Screenshot_1592931593.png =240x450)  
