@@ -6,9 +6,12 @@
 
 # Capturas de Pantalla
 
-![Pantalla de Inicio de Sesión](https://raw.githubusercontent.com/is-lgarcia/mini_twitter/development/screenshots/Screenshot_1592931295.png =240x450)  ![Pantalla de Registro](https://raw.githubusercontent.com/is-lgarcia/mini_twitter/development/screenshots/Screenshot_1592931313.png =240x450)  ![Listado de Tweets](https://raw.githubusercontent.com/is-lgarcia/mini_twitter/development/screenshots/Screenshot_1592931578.png =240x450)
+![Pantalla de Inicio de Sesión](screenshots/Screenshot_1592931295.png =240x450)
+![Pantalla de Registro](screenshots/Screenshot_1592931313.png =240x450)  
+![Listado de Tweets](screenshots/Screenshot_1592931578.png =240x450)
 
-![Tweets Favoritos](https://raw.githubusercontent.com/is-lgarcia/mini_twitter/development/screenshots/Screenshot_1592931593.png =240x450)  ![Información de Perfil](https://raw.githubusercontent.com/is-lgarcia/mini_twitter/development/screenshots/Screenshot_1592931602.png =240x450)   
+![Tweets Favoritos](screenshots/Screenshot_1592931593.png =240x450)  
+![Información de Perfil](screenshots/Screenshot_1592931602.png =240x450)   
 
 ## Librerias usadas:
 
