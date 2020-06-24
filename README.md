@@ -6,7 +6,8 @@
 
 # Capturas de Pantalla
 
-![Pantalla de Inicio de Sesión](screenshots/Screenshot_1592931295.png){:height="450px" width="240px"}
+<img src="screenshots/Screenshot_1592931295.png" width="240" height="450">
+
 ![Pantalla de Registro](screenshots/Screenshot_1592931313.png =240x450)
 ![Listado de Tweets](screenshots/Screenshot_1592931578.png =240x450)
 
