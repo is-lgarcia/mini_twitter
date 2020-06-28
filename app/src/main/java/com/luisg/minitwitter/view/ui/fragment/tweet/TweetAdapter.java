@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieProperty;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.luisg.minitwitter.R;
@@ -84,16 +86,23 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             holder.imageLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    holder.imageLike.playAnimation();
                     twettViewModel.likeTweet(holder.mItem.getId());
                 }
             });
 
             for (Like like : holder.mItem.getLikes()) {
                 if (like.getUsername().equals(username)) {
-                    Glide.with(context)
+
+                    holder.imageLike.setProgress(1.0f);
+
+                    /*Glide.with(context)
                             .load(R.drawable.ic_like_pink)
-                            .into(holder.imageLike);
-                    holder.textCountLikes.setTextColor(context.getResources().getColor(R.color.colorPinkIconLike));
+                            .into(holder.imageLike);*/
+
+                    holder.textCountLikes.setTextColor(context.getResources()
+                            .getColor(R.color.colorPinkIconLike));
                     holder.textCountLikes.setTypeface(null, Typeface.BOLD);
                     break;
                 }
@@ -119,7 +128,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
         public final View mView;
         public final ImageView imageAvatar;
-        public final ImageView imageLike;
+        public final LottieAnimationView imageLike;
         public final ImageView showMenu;
         public final TextView textUserName;
         public final TextView textMessage;
