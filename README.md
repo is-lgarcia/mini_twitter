@@ -8,7 +8,7 @@
 
 <img src="screenshots/Screenshot_1592931295.png" width="240" height="450"> <img src="screenshots/Screenshot_1592931313.png" width="240" height="450"> <img src="screenshots/Screenshot_1592931578.png" width="240" height="450">
 
-<img src="screenshots/Screenshot_1592931593.png" width="240" height="450"> <img src="screenshots/Screenshot_1592931602.png" width="240" height="450">
+<img src="screenshots/Screenshot_1592931593.png" width="240" height="450"> <img src="screenshots/Screenshot_1592931602.png" width="240" height="450"> <img src="screenshots/like_animation.gif">
 
 ## Librerias usadas:
 
@@ -20,6 +20,7 @@
 	* **DataBinding** - Declarativamente enlazar datos observables a elementos de la interfaz de usuario.
 * **UI** - Detalles de diseño
 	* **Material Design** - Componentes de InputLayout para crear una mejor experiencia al usuario.
+	* **Lottie** - Componente para animaciones vectoriales, se utilizó en el botón de like y en el Splash Screen.
 * **Tercero**
 	* **Retrofit** - Un cliente HTTP de tipo seguro para Android, con esto consumimos la Api de la URL: [https://minitwitter.com:3001/api/](https://www.minitwitter.com:3001/api/)
 	* **Converter-Gson** - Conversor de respuesta de la API a un formato de tipo Json.
